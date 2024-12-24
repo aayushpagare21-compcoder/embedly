@@ -1,8 +1,8 @@
 import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from "emebedly/app/server/services/prisma";
+import { prisma } from "emebedly/services/prisma";
 import NextAuth from "next-auth";
-import { env } from "emebedly/app/server/services/config";
+import { env } from "emebedly/services/config";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {

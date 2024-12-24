@@ -1,7 +1,7 @@
-import { getAuthUser } from "emebedly/app/server/services/getAuthUser";
-import logger from "emebedly/app/server/services/logger";
-import { getChunksFromUploadedTextFile } from "emebedly/app/server/services/textLoader";
-import { embedAndStoreDocs } from "emebedly/app/server/services/vectorStore";
+import { getAuthUser } from "emebedly/services/getAuthUser";
+import logger from "emebedly/services/logger";
+import { getChunksFromUploadedTextFile } from "emebedly/services/textLoader";
+import { embedAndStoreDocs } from "emebedly/services/vectorStore";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
