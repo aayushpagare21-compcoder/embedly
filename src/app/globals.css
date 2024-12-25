@@ -27,7 +27,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #1A1A1D; /* Change the color of the scrollbar thumb */
+  background-color: #1a1a1d; /* Change the color of the scrollbar thumb */
   border-radius: 0; /* Remove the border radius to make the scrollbar appear as a thin line */
   cursor: pointer;
 }

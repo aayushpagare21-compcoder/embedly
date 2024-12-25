@@ -3,9 +3,9 @@ version: "3.8"
 services:
   db:
     image: postgres:14
-    container_name: embedly-local-db
+    container_name: embedme-local-db
     environment:
-      POSTGRES_DB: aspirants-local
+      POSTGRES_DB: embedme-local
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:

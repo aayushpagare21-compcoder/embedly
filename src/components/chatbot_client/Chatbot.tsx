@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import PageWrapper from "emebedly/components/containers/PageWrapper";
 import ChatbotInput from "./ChatbotInput";
 import ChatBotWelcomeHeading from "./ChatbotWelcomeHeading";
-import EmbedlyNavbar from "../embedly/EmbedlyNavbar";
+import EmbedmeNavbar from "../embedme/EmbedmeNavbar";
 import { useAsyncFn } from "react-use";
 
 interface ChatbotProps {
@@ -43,7 +43,7 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
       }
       const data = await response.json();
       return data.answer;
-    }
+    },
   );
 
   const handleSendMessage = async () => {
@@ -61,8 +61,8 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
           prev.map((msg, index) =>
             index === prev.length - 1
               ? { sender: Sender.BOT, text: answer.trim() }
-              : msg
-          )
+              : msg,
+          ),
         );
       } catch {
         setMessages((prev) =>
@@ -73,8 +73,8 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
                   text: "Failed to load AI response.",
                   error: true,
                 }
-              : msg
-          )
+              : msg,
+          ),
         );
       }
     }
@@ -82,7 +82,7 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
 
   return (
     <PageWrapper>
-      <EmbedlyNavbar />
+      <EmbedmeNavbar />
       {!messages.length && (
         <div className="mt-16 h-full">
           <ChatBotWelcomeHeading chatBotName={chatBotName} />
@@ -106,8 +106,8 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
                   message.sender === Sender.HUMAN
                     ? "bg-gradient-to-r from-blue-500 to-blue-700 text-white"
                     : error
-                    ? "bg-red-500 text-white"
-                    : "bg-gradient-to-r from-pink-300 to-pink-500 text-black"
+                      ? "bg-red-500 text-white"
+                      : "bg-gradient-to-r from-pink-300 to-pink-500 text-black"
                 }`}
               >
                 {loading && index === messages.length - 1 ? (

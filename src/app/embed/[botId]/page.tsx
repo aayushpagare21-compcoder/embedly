@@ -1,5 +1,5 @@
-import ChatbotClient from "emebedly/components/chatbot_client/Chatbot";
-import { prisma } from "emebedly/services/prisma";
+import ChatbotClient from "emebedme/components/chatbot_client/Chatbot";
+import { prisma } from "emebedme/services/prisma";
 
 export default async function Chatbot({
   params,
