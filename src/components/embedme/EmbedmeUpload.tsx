@@ -1,59 +1,53 @@
 "use client";
 import React, { useRef, useState } from "react";
+import { useAsyncFn } from "react-use";
+
+async function startTraining(file: File) {
+  const formData = new FormData();
+  formData.append("training-file", file);
+  const response = await fetch("/api/training", {
+    method: "POST",
+    body: formData,
+  });
+  const result = await response.json();
+  return result;
+}
 
 const EmbedMeUpload: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
-  const [isUploading, setIsUploading] = useState(false);
 
   const handleButtonClick = () => {
-    fileInputRef.current?.click(); 
+    fileInputRef.current?.click();
   };
 
+  const [{ loading, value }, fileUpload] = useAsyncFn(startTraining);
+
   const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0];
     if (!file) {
       setFeedback("No file selected.");
       return;
     }
-
     if (file.type !== "text/plain") {
       setFeedback("Only .txt files are allowed.");
       return;
     }
-
-    setIsUploading(true);
     setFeedback(null);
+    const result = await fileUpload(file);
 
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const response = await fetch("/api/upload-text-file", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        setFeedback(result.message);
-      } else {
-        setFeedback(result.message || "Upload failed.");
-      }
-    } catch (error) {
-      setFeedback("An error occurred while uploading the file.");
-    } finally {
-      setIsUploading(false);
+    if (result.error) {
+      setFeedback(result.error);
     }
   };
 
   return (
-    <div className="flex flex-col gap-4 w-full items-center mt-4">
+    <div className="flex flex-col gap-2 w-full items-center mt-4">
       <div className="flex flex-col items-center gap-2 w-[60vw] md:w-full">
         <span className="text-sm text-gray-500 dark:text-gray-400">
-          {isUploading ? "Uploading..." : "Only .txt files allowed"}
+          {loading ? "Uploading..." : "Only .txt files allowed"}
         </span>
         <input
           ref={fileInputRef}
@@ -65,7 +59,7 @@ const EmbedMeUpload: React.FC = () => {
         <button
           onClick={handleButtonClick}
           className="rounded-full w-[60vw] md:w-full px-4 py-2 text-sm sm:text-base bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] transition-all"
-          disabled={isUploading}
+          disabled={loading}
         >
           Select File
         </button>
@@ -77,9 +71,12 @@ const EmbedMeUpload: React.FC = () => {
         Read instructions
       </a>
       {feedback && (
-        <div className="text-center text-sm md:text-base text-red-600 dark:text-red-400">
-          {feedback}
-        </div>
+        <div className="text-center text-sm md:text-base">{feedback}</div>
+      )}
+      {value && value.botId && (
+        <a href={`/embed/${value.botId}`} className="text-pink-500 underline">
+          Check your bot
+        </a>
       )}
     </div>
   );

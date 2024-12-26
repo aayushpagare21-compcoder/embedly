@@ -1,4 +1,4 @@
-import { auth } from "emebedme/app/auth";
+import { auth } from "emebedme/auth";
 import { prisma } from "./prisma";
 
 export const getAuthUser = async () => {

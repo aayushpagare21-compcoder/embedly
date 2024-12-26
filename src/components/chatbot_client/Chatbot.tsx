@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import ChatbotInput from "./ChatbotInput";
 import ChatBotWelcomeHeading from "./ChatbotWelcomeHeading";
 import { useAsyncFn } from "react-use";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface ChatbotProps {
   chatBotName?: string;
@@ -27,22 +29,20 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
   const [messages, setMessages] = useState<Messages[]>([]);
   const [question, setQuestion] = useState("");
 
-  const [{ loading, error }, getAnswer] = useAsyncFn(
-    async (questionAsked: string) => {
-      const response = await fetch(`/api/chat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ question: questionAsked, botId }),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to fetch AI response");
-      }
-      const data = await response.json();
-      return data.answer;
+  const [{ loading }, getAnswer] = useAsyncFn(async (questionAsked: string) => {
+    const response = await fetch(`/api/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ question: questionAsked, botId }),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch AI response");
     }
-  );
+    const data = await response.json();
+    return data.answer;
+  });
 
   const handleSendMessage = async () => {
     if (question.trim()) {
@@ -59,8 +59,8 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
           prev.map((msg, index) =>
             index === prev.length - 1
               ? { sender: Sender.BOT, text: answer.trim() }
-              : msg
-          )
+              : msg,
+          ),
         );
       } catch {
         setMessages((prev) =>
@@ -71,8 +71,8 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
                   text: "Failed to load AI response.",
                   error: true,
                 }
-              : msg
-          )
+              : msg,
+          ),
         );
       }
     }
@@ -102,9 +102,9 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
                 className={`max-w-[250px] md:max-w-md text-md px-4 py-3 mx-2 rounded-lg shadow-md ${
                   message.sender === Sender.HUMAN
                     ? "bg-gradient-to-r from-blue-500 to-blue-700 text-white"
-                    : error
-                    ? "bg-red-500 text-white"
-                    : "bg-gradient-to-r from-pink-300 to-pink-500 text-black"
+                    : message.error
+                      ? "bg-red-500 text-white"
+                      : "bg-gradient-to-r from-pink-300 to-pink-500 text-black"
                 }`}
               >
                 {loading && index === messages.length - 1 ? (
@@ -113,6 +113,10 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
                       typing...
                     </div>
                   </div>
+                ) : message.sender === Sender.BOT ? (
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {message.text}
+                  </ReactMarkdown>
                 ) : (
                   message.text
                 )}

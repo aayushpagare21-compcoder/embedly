@@ -15,7 +15,7 @@ const embeddings = new GoogleGenerativeAIEmbeddings({
 export async function embedAndStoreDocs(
   // @ts-expect-error docs type error
   docs: Document<Record<string, unknown>>[],
-  userId: string,
+  botId: string,
 ) {
   /*create and store the embeddings in the vectorStore*/
   try {
@@ -28,7 +28,7 @@ export async function embedAndStoreDocs(
       ...doc,
       metadata: {
         ...doc.metadata,
-        userId,
+        botId,
       },
     }));
 

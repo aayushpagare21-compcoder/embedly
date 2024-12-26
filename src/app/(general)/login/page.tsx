@@ -1,16 +1,16 @@
 import { GoogleIcon } from "emebedme/components/icons/GoogleIcon";
-import { signIn } from "../../auth";
 import Link from "next/link";
 import Summary from "emebedme/components/landing/Summary";
+import { signIn } from "emebedme/auth";
 
-export default function LoginPage() {
+export default async function LoginPage() {
   return (
     <div className="flex flex-col items-center md:items-start gap-2">
       <Summary />
       <button
         onClick={async () => {
           "use server";
-          await signIn("google");
+          await signIn("google", { redirectTo: "/" });
         }}
       >
         <div className="flex gap-2">

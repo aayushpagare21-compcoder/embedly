@@ -8,8 +8,11 @@ export default async function Chatbot({
 }) {
   const botId = (await params).botId;
 
-  const user = await prisma.user.findUnique({
+  const bot = await prisma.bot.findUnique({
     where: { id: botId },
+    include: { user: true },
   });
-  return <ChatbotClient chatBotName={user?.name ?? undefined} botId={botId} />;
+  return (
+    <ChatbotClient chatBotName={bot?.user.name ?? undefined} botId={botId} />
+  );
 }

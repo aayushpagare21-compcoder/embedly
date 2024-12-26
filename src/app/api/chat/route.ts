@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     const retriever = pineconeVectorStore.asRetriever({
       k: 2, // Retrieve 2 most relevant documents
       filter: {
-        userId: botId,
+        botId,
       },
     });
 

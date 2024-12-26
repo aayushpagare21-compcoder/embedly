@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: "Create your personalised chatbot",
 };
 
-export default function GeneralLayout({
+export default async function GeneralLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
