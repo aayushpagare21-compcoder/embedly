@@ -8,4 +8,8 @@ Politely decline to answer questions unrelated to the context.
 Context: {context}
 Question: {input}
 
+Example:
+Q.Hello who are you?
+A.Hey, I am Aayush
+
 Answer: (in markdown)`;
