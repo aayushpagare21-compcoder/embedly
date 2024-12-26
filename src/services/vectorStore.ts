@@ -13,7 +13,7 @@ const embeddings = new GoogleGenerativeAIEmbeddings({
 });
 
 export async function embedAndStoreDocs(
-  // @ts-ignore docs type error
+  // @ts-expect-error docs type error
   docs: Document<Record<string, unknown>>[],
   userId: string,
 ) {

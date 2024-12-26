@@ -1,5 +1,6 @@
 "use client";
 import Example from "emebedme/components/landing/Example";
+import Link from "next/link";
 import { useState } from "react";
 
 const thingsToInclude = [
@@ -28,7 +29,7 @@ const thingsToNotInclude = [
   "Duplicate or repetitive content",
 ];
 
-export default function Instructions() {
+export default function EmbedmeInstructions() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleIndex = (index: number) => {
@@ -42,7 +43,7 @@ export default function Instructions() {
   ];
 
   return (
-    <div className="flex flex-col gap-4 h-[500px] w-[500px] overflow-auto">
+    <div className="flex flex-col gap-4 h-[500px] md:w-[500px] overflow-auto">
       <div className="text-xl text-blue-600"> {`FAQ's...`} </div>
       <div className="text-sm md:text-base text-left">
         {sections.map((section, index) => (
@@ -70,6 +71,9 @@ export default function Instructions() {
         The more detailed and relevant information you provide, the better the
         chatbot will perform.
       </em>
+      <div className="flex justify-center">
+        <Link href="/"> Back</Link>
+      </div>
     </div>
   );
 }

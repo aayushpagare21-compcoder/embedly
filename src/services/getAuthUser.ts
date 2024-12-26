@@ -1,4 +1,4 @@
-import { auth } from "emebedly/app/auth";
+import { auth } from "emebedme/app/auth";
 import { prisma } from "./prisma";
 
 export const getAuthUser = async () => {
@@ -6,7 +6,7 @@ export const getAuthUser = async () => {
 
   if (!session) return null;
 
-  const email = session?.user?.email;
+  const email = session?.user?.email ?? undefined;
 
   const user = await prisma.user.findUnique({ where: { email } });
 

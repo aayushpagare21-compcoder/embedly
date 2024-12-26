@@ -1,7 +1,7 @@
-import { getAuthUser } from "emebedly/services/getAuthUser";
-import logger from "emebedly/services/logger";
-import { getChunksFromUploadedTextFile } from "emebedly/services/textLoader";
-import { embedAndStoreDocs } from "emebedly/services/vectorStore";
+import { getAuthUser } from "emebedme/services/getAuthUser";
+import logger from "emebedme/services/logger";
+import { getChunksFromUploadedTextFile } from "emebedme/services/textLoader";
+import { embedAndStoreDocs } from "emebedme/services/vectorStore";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         },
         {
           status: 401,
-        },
+        }
       );
     }
 
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       },
       {
         status: 500,
-      },
+      }
     );
   }
 }

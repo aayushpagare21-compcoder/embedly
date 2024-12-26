@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface EmbedmeLogoProps {
@@ -34,7 +35,7 @@ const EmbedmeLogo: React.FC<EmbedmeLogoProps> = ({
           const color = colors[index];
           return (
             <div key={index} className={`${sizeClasses[variant]} ${color}`}>
-              {char}
+              <Link href="/"> {char} </Link>
             </div>
           );
         })}

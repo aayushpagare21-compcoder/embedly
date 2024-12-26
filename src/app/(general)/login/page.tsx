@@ -1,5 +1,5 @@
 import { GoogleIcon } from "emebedme/components/icons/GoogleIcon";
-import { signIn } from "../auth";
+import { signIn } from "../../auth";
 import Link from "next/link";
 import Summary from "emebedme/components/landing/Summary";
 

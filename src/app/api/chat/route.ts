@@ -1,10 +1,10 @@
-import { getVectorStore } from "emebedly/services/vectorStore";
+import { getVectorStore } from "emebedme/services/vectorStore";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { createRetrievalChain } from "langchain/chains/retrieval";
 import { NextRequest, NextResponse } from "next/server";
-import { model } from "emebedly/services/llm";
+import { model } from "emebedme/services/llm";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { QA_TEMPLATE } from "emebedly/services/propmtTemplate";
+import { QA_TEMPLATE } from "emebedme/services/propmtTemplate";
 
 export async function POST(req: NextRequest) {
   try {

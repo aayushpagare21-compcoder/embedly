@@ -8,6 +8,4 @@ const envSchema = z.object({
   NEXTAUTH_SECRET: z.string().trim().min(1),
 });
 
-console.log("=====process.env", process.env);
-
 export const env = envSchema.parse(process.env);
