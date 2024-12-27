@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
 
     const pineconeVectorStore = await getVectorStore();
     const retriever = pineconeVectorStore.asRetriever({
-      k: 2, // Retrieve 2 most relevant documents
+      k: 4, // Retrieve 2 most relevant documents
       filter: {
         botId,
       },
