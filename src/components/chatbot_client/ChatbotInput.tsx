@@ -26,7 +26,7 @@ const ChatbotInput = ({
       textareaRef.current.style.height = "auto"; // Reset height to auto to calculate the new height
       textareaRef.current.style.height = `${Math.min(
         textareaRef.current.scrollHeight,
-        120 // Max height in pixels (customizable)
+        120, // Max height in pixels (customizable)
       )}px`;
     }
   };

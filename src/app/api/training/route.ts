@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
         },
         {
           status: 401,
-        }
+        },
       );
     }
 
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
         },
         {
           status: 409,
-        }
+        },
       );
     }
 
@@ -38,19 +38,19 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const trainingFile = formData.get("training-file") as File;
     const chatBotWelcomeMessage = formData.get(
-      "chatBotWelcomeMessage"
+      "chatBotWelcomeMessage",
     ) as string;
     const bgColor = formData.get("bgColor") as string;
     const botMessageBackgroundColor = formData.get(
-      "botMessageBackgroundColor"
+      "botMessageBackgroundColor",
     ) as string;
     const botMessageColor = formData.get("botMessageColor") as string;
     const userMessageBackgroundColor = formData.get(
-      "userMessageBackgroundColor"
+      "userMessageBackgroundColor",
     ) as string;
     const userMessageColor = formData.get("userMessageColor") as string;
     const chatBotPlaceholderText = formData.get(
-      "chatBotPlaceholderText"
+      "chatBotPlaceholderText",
     ) as string;
     const inputBackgroundColor = formData.get("inputBackgroundColor") as string;
     const inputColor = formData.get("inputColor") as string;
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
       { botId: createdBot.id },
       {
         status: 200,
-      }
+      },
     );
   } catch (error) {
     console.error("Internal server error ", error);
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
       },
       {
         status: 500,
-      }
+      },
     );
   }
 }

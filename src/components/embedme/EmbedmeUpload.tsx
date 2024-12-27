@@ -34,7 +34,7 @@ async function startTraining(data: ChatbotConfig): Promise<TrainingResponse> {
   formData.append("botMessageColor", data.botMessageColor);
   formData.append(
     "userMessageBackgroundColor",
-    data.userMessageBackgroundColor
+    data.userMessageBackgroundColor,
   );
   formData.append("userMessageColor", data.userMessageColor);
   formData.append("chatBotPlaceholderText", data.chatBotPlaceholderText);
@@ -57,7 +57,7 @@ const EmbedMeUpload: React.FC = () => {
   const [isPreviewVisible, setIsPreviewVisible] = useState(false);
   // States remain the same
   const [chatBotWelcomeMessage, setChatBotWelcomeMessage] = useState(
-    "Hey, How can I help you today?"
+    "Hey, How can I help you today?",
   );
   const [bgColor, setBgColor] = useState("#ffffff");
   const [botMessageBackgroundColor, setBotMessageBackgroundColor] =
@@ -67,7 +67,7 @@ const EmbedMeUpload: React.FC = () => {
     useState("#e3f2fd");
   const [userMessageColor, setUserMessageColor] = useState("#000000");
   const [chatBotPlaceholderText, setChatBotPlaceholderText] = useState(
-    "Type your message here..."
+    "Type your message here...",
   );
   const [inputBackgroundColor, setInputBackgroundColor] = useState("#ffffff");
   const [inputColor, setInputColor] = useState("#000000");

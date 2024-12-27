@@ -93,7 +93,7 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
       const data: ChatResponse = await response.json();
       return data.answer;
     },
-    [botId]
+    [botId],
   );
 
   // Message handlers
@@ -113,8 +113,8 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
       const answer = await getAnswer(trimmedQuestion);
       setMessages((prev) =>
         prev.map((msg, index) =>
-          index === prev.length - 1 ? { ...msg, text: answer.trim() } : msg
-        )
+          index === prev.length - 1 ? { ...msg, text: answer.trim() } : msg,
+        ),
       );
     } catch (error) {
       setMessages((prev) =>
@@ -125,8 +125,8 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
                 text: "Failed to load AI response. Please try again.",
                 error: true,
               }
-            : msg
-        )
+            : msg,
+        ),
       );
       console.error("Error fetching AI response:", error);
     }
@@ -155,7 +155,10 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {message.text}
         </ReactMarkdown>
-        <em className="text-[0.8rem]" style={{color: chatBotMessageColor, opacity: 0.5}}> 
+        <em
+          className="text-[0.8rem]"
+          style={{ color: chatBotMessageColor, opacity: 0.5 }}
+        >
           powered by embedme
         </em>
       </div>
