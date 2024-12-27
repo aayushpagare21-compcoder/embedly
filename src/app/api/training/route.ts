@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
         },
         {
           status: 401,
-        },
+        }
       );
     }
 
@@ -30,26 +30,53 @@ export async function POST(req: NextRequest) {
         },
         {
           status: 409,
-        },
+        }
       );
     }
-
-    const createdBot = await prisma.bot.create({
-      data: {
-        userId: user.id,
-      },
-    });
 
     // training file
     const formData = await req.formData();
     const trainingFile = formData.get("training-file") as File;
+    const chatBotWelcomeMessage = formData.get(
+      "chatBotWelcomeMessage"
+    ) as string;
+    const bgColor = formData.get("bgColor") as string;
+    const botMessageBackgroundColor = formData.get(
+      "botMessageBackgroundColor"
+    ) as string;
+    const botMessageColor = formData.get("botMessageColor") as string;
+    const userMessageBackgroundColor = formData.get(
+      "userMessageBackgroundColor"
+    ) as string;
+    const userMessageColor = formData.get("userMessageColor") as string;
+    const chatBotPlaceholderText = formData.get(
+      "chatBotPlaceholderText"
+    ) as string;
+    const inputBackgroundColor = formData.get("inputBackgroundColor") as string;
+    const inputColor = formData.get("inputColor") as string;
+
+    const createdBot = await prisma.bot.create({
+      data: {
+        userId: user.id,
+        backgroundColor: bgColor,
+        botMessageBackgroundColor: botMessageBackgroundColor,
+        botMessageTextColor: botMessageColor,
+        inputBackgroundColor: inputBackgroundColor,
+        inputTextColor: inputColor,
+        placeholderText: chatBotPlaceholderText,
+        userMessageBackgroundColor: userMessageBackgroundColor,
+        userMessageTextColor: userMessageColor,
+        welcomeMessage: chatBotWelcomeMessage,
+      },
+    });
+
     await saveOnPinecone(trainingFile, createdBot.id);
 
     return NextResponse.json(
       { botId: createdBot.id },
       {
         status: 200,
-      },
+      }
     );
   } catch (error) {
     console.error("Internal server error ", error);
@@ -59,7 +86,7 @@ export async function POST(req: NextRequest) {
       },
       {
         status: 500,
-      },
+      }
     );
   }
 }

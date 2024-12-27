@@ -79,9 +79,18 @@ model Authenticator {
 }
 
 model Bot {
-  id     String @id @default(uuid())
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
+  id                         String @id @default(uuid())
+  userId                     String
+  user                       User   @relation(fields: [userId], references: [id])
+  welcomeMessage             String
+  backgroundColor            String
+  botMessageBackgroundColor  String
+  botMessageTextColor        String
+  userMessageTextColor       String
+  userMessageBackgroundColor String
+  inputBackgroundColor       String
+  inputTextColor             String
+  placeholderText            String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

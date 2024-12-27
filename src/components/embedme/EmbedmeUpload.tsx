@@ -1,83 +1,189 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { useAsyncFn } from "react-use";
 
-async function startTraining(file: File) {
+import React, { useState } from "react";
+import { useAsyncFn } from "react-use";
+import Chatbot from "../chatbot_client/Chatbot";
+import CreateChatbotForm from "./CreateChatbotForm";
+
+// Types remain the same
+interface ChatbotConfig {
+  file: File;
+  chatBotWelcomeMessage: string;
+  bgColor: string;
+  botMessageBackgroundColor: string;
+  botMessageColor: string;
+  userMessageBackgroundColor: string;
+  userMessageColor: string;
+  chatBotPlaceholderText: string;
+  inputBackgroundColor: string;
+  inputColor: string;
+}
+
+interface TrainingResponse {
+  error?: string;
+  botId?: string;
+}
+
+// API function remains the same
+async function startTraining(data: ChatbotConfig): Promise<TrainingResponse> {
   const formData = new FormData();
-  formData.append("training-file", file);
+  formData.append("training-file", data.file);
+  formData.append("chatBotWelcomeMessage", data.chatBotWelcomeMessage);
+  formData.append("bgColor", data.bgColor);
+  formData.append("botMessageBackgroundColor", data.botMessageBackgroundColor);
+  formData.append("botMessageColor", data.botMessageColor);
+  formData.append(
+    "userMessageBackgroundColor",
+    data.userMessageBackgroundColor
+  );
+  formData.append("userMessageColor", data.userMessageColor);
+  formData.append("chatBotPlaceholderText", data.chatBotPlaceholderText);
+  formData.append("inputBackgroundColor", data.inputBackgroundColor);
+  formData.append("inputColor", data.inputColor);
+
   const response = await fetch("/api/training", {
     method: "POST",
     body: formData,
   });
-  const result = await response.json();
-  return result;
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  return await response.json();
 }
 
 const EmbedMeUpload: React.FC = () => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [isPreviewVisible, setIsPreviewVisible] = useState(false);
+  // States remain the same
+  const [chatBotWelcomeMessage, setChatBotWelcomeMessage] = useState(
+    "Hey, How can I help you today?"
+  );
+  const [bgColor, setBgColor] = useState("#ffffff");
+  const [botMessageBackgroundColor, setBotMessageBackgroundColor] =
+    useState("#f0f0f0");
+  const [botMessageColor, setBotMessageColor] = useState("#000000");
+  const [userMessageBackgroundColor, setUserMessageBackgroundColor] =
+    useState("#e3f2fd");
+  const [userMessageColor, setUserMessageColor] = useState("#000000");
+  const [chatBotPlaceholderText, setChatBotPlaceholderText] = useState(
+    "Type your message here..."
+  );
+  const [inputBackgroundColor, setInputBackgroundColor] = useState("#ffffff");
+  const [inputColor, setInputColor] = useState("#000000");
+  const [file, setFile] = useState<File | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  const handleButtonClick = () => {
-    fileInputRef.current?.click();
+  const [{ loading, value }, startTrainingFn] = useAsyncFn(startTraining);
+
+  // Handlers remain the same
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    setFile(selectedFile || null);
   };
 
-  const [{ loading, value }, fileUpload] = useAsyncFn(startTraining);
-
-  const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = event.target.files?.[0];
+  const handleSubmit = async () => {
     if (!file) {
-      setFeedback("No file selected.");
+      setFeedback("Please select a training file.");
       return;
     }
-    if (file.type !== "text/plain") {
-      setFeedback("Only .txt files are allowed.");
-      return;
-    }
-    setFeedback(null);
-    const result = await fileUpload(file);
 
-    if (result.error) {
-      setFeedback(result.error);
+    setFeedback("Processing...");
+    try {
+      const config: ChatbotConfig = {
+        file,
+        chatBotWelcomeMessage,
+        bgColor,
+        botMessageBackgroundColor,
+        botMessageColor,
+        userMessageBackgroundColor,
+        userMessageColor,
+        chatBotPlaceholderText,
+        inputBackgroundColor,
+        inputColor,
+      };
+
+      await startTrainingFn(config);
+      setFeedback("Chatbot setup successfully!");
+    } catch (err) {
+      console.error("Error:", err);
+      setFeedback("An error occurred while setting up the chatbot.");
     }
   };
 
   return (
-    <div className="flex flex-col gap-2 w-full items-center mt-4">
-      <div className="flex flex-col items-center gap-2 w-[60vw] md:w-full">
-        <span className="text-sm text-gray-500 dark:text-gray-400">
-          {loading ? "Uploading..." : "Only .txt files allowed"}
-        </span>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".txt"
-          onChange={handleFileUpload}
-          className="hidden"
-        />
+    <div className="min-h-screen">
+      {/* Mobile Preview Toggle */}
+      <div className="lg:hidden fixed bottom-4 right-4 z-50">
         <button
-          onClick={handleButtonClick}
-          className="rounded-full w-[60vw] md:w-full px-4 py-2 text-sm sm:text-base bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] transition-all"
-          disabled={loading}
+          onClick={() => setIsPreviewVisible(!isPreviewVisible)}
+          className="bg-foreground text-background px-4 py-2 rounded-full shadow-lg"
         >
-          Select File
+          {isPreviewVisible ? "Hide Preview" : "Show Preview"}
         </button>
       </div>
-      <a
-        href="/instructions"
-        className="rounded-full w-[60vw] md:w-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-      >
-        Read instructions
-      </a>
-      {feedback && (
-        <div className="text-center text-sm md:text-base">{feedback}</div>
-      )}
-      {value && value.botId && (
-        <a href={`/embed/${value.botId}`} className="text-pink-500 underline">
-          Check your bot
-        </a>
-      )}
+
+      {/* Main Layout */}
+      <div className="flex flex-col lg:flex-row w-full min-h-screen gap-8">
+        {/* Configuration Panel - Always visible on desktop, conditionally visible on mobile when preview is hidden */}
+        <div className={`${isPreviewVisible ? "hidden" : "block"} lg:block`}>
+          <div className="flex flex-col gap-4 w-full lg:w-[80%] p-4">
+            <h1 className="text-xl md:text-2xl font-bold text-gray-700 dark:text-gray-200">
+              Set up your chatbot
+            </h1>
+            <CreateChatbotForm
+              bgColor={bgColor}
+              botMessageBackgroundColor={botMessageBackgroundColor}
+              botMessageColor={botMessageColor}
+              chatBotPlaceholderText={chatBotPlaceholderText}
+              chatBotWelcomeMessage={chatBotWelcomeMessage}
+              file={file}
+              handleFileUpload={handleFileUpload}
+              handleSubmit={handleSubmit}
+              inputBackgroundColor={inputBackgroundColor}
+              inputColor={inputColor}
+              userMessageBackgroundColor={userMessageBackgroundColor}
+              loading={loading}
+              setBgColor={setBgColor}
+              setBotMessageBackgroundColor={setBotMessageBackgroundColor}
+              setBotMessageColor={setBotMessageColor}
+              setChatBotPlaceholderText={setChatBotPlaceholderText}
+              setChatBotWelcomeMessage={setChatBotWelcomeMessage}
+              setFile={setFile}
+              setInputBackgroundColor={setInputBackgroundColor}
+              setInputColor={setInputColor}
+              setUserMessageBackgroundColor={setUserMessageBackgroundColor}
+              setUserMessageColor={setUserMessageColor}
+              userMessageColor={userMessageColor}
+              feedback={feedback ?? undefined}
+              value={value}
+            />
+          </div>
+        </div>
+
+        {/* Chatbot Preview - Always visible on desktop, conditionally visible on mobile when preview is shown */}
+        <div
+          className={`
+            ${isPreviewVisible ? "block" : "hidden"} 
+            lg:block 
+            h-[500px]            
+          `}
+        >
+          <Chatbot
+            botId="preview"
+            chatBotBackgroundColor={bgColor}
+            chatBotMessageBackgroundColor={botMessageBackgroundColor}
+            chatBotMessageColor={botMessageColor}
+            chatBotPlaceholderText={chatBotPlaceholderText}
+            chatBotWelcomeMessage={chatBotWelcomeMessage}
+            preview={true}
+            userMessageBackgroundColor={userMessageBackgroundColor}
+            userMessageColor={userMessageColor}
+            inputBg={inputBackgroundColor}
+            inputColor={inputColor}
+          />
+        </div>
+      </div>
     </div>
   );
 };

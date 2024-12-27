@@ -66,6 +66,15 @@ CREATE TABLE "Authenticator" (
 CREATE TABLE "Bot" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
+    "welcomeMessage" TEXT NOT NULL,
+    "backgroundColor" TEXT NOT NULL,
+    "botMessageBackgroundColor" TEXT NOT NULL,
+    "botMessageTextColor" TEXT NOT NULL,
+    "userMessageTextColor" TEXT NOT NULL,
+    "userMessageBackgroundColor" TEXT NOT NULL,
+    "inputBackgroundColor" TEXT NOT NULL,
+    "inputTextColor" TEXT NOT NULL,
+    "placeholderText" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

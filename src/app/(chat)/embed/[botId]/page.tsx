@@ -12,7 +12,24 @@ export default async function Chatbot({
     where: { id: botId },
     include: { user: true },
   });
+
+  if (!bot) {
+    return null;
+  }
+
   return (
-    <ChatbotClient chatBotName={bot?.user.name ?? undefined} botId={botId} />
+    <ChatbotClient
+      botId={bot.id}
+      chatBotBackgroundColor={bot.backgroundColor}
+      chatBotMessageBackgroundColor={bot.botMessageBackgroundColor}
+      chatBotMessageColor={bot.botMessageTextColor}
+      chatBotPlaceholderText={bot.placeholderText}
+      chatBotWelcomeMessage={bot.welcomeMessage}
+      inputBg={bot.inputBackgroundColor}
+      inputColor={bot.inputTextColor}
+      preview={false}
+      userMessageBackgroundColor={bot.userMessageBackgroundColor}
+      userMessageColor={bot.userMessageTextColor}
+    />
   );
 }
