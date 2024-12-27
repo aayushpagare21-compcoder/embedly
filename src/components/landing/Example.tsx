@@ -2,114 +2,105 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 const mdxContent = `
-**Basic Information**
-
-Name: Aayush Upendra Pagare  
-Gender: Male  
-Pronouns: He/Him  
-Location: Vadodara, Gujarat, India  
-Occupation: Self-employed, Freelancer, Software Developer, Technical Writer
+**Basic Information**  
+Aayush Upendra Pagare is a male, and his pronouns are He/Him. He is from Vadodara, Gujarat, India, and works as a self-employed freelancer, specializing as a software developer and technical writer.
 
 ---
 
-**Professional Introduction**
+**Professional Introduction**  
+Aayush is a full-stack developer by day and a technical writer by night. He worked as a Software Developer at Matlabinfotech for 1 year and 9 months, where he gained experience in technologies such as Nest.js, React.js, PostgreSQL, Prisma, Snowflake, DBT, and Jest. During his time at Matlabinfotech, Aayush contributed to a significant project by developing a Slack bot to automate workflows within the company.
 
-Aayush is a skilled Full-Stack Developer with experience in Nest.js, React.js, PostgreSQL, Prisma, Snowflake, and DBT.  
-He has a strong background in technical writing and has contributed to the developer community through blogs on Medium.  
+Outside of his work hours, Aayush explored his interest in Docker, leading him to build a remote code execution project, where he delved into containerization and secure execution environments.  
 
-Key highlights of his career include:  
-- Building a Slack bot to automate workflows at Matlabinfotech.  
-- Developing AspirantsAI, a platform leveraging Generative AI for UPSC aspirants, where he handled end-to-end development and deployment.  
-- Writing and sharing insights through technical blogs.  
+Keen on building an app end-to-end and exploring Generative AI technologies, Aayush created **AspirantsAI**. This project involved using the Next.js framework, where he handled everything from frontend and backend development to database management and deployment.
 
-Aayush is passionate about remote work and global collaboration, ready to contribute to impactful projects across the globe.
+In addition to his development work, Aayush writes technical blogs to share insights, document learnings, and contribute to the developer community. You can check out his Medium profile for more details.
 
----
-
-**Academic Qualifications**
-
-- **Primary & Secondary Education:** Saint Basil School  
-  - **10th Board:** 96%  
-  - **12th Board:** 90%  
-- **Degree:** B.E. in Computer Science and Engineering  
-  - **College:** Babaria Institute of Technology  
-  - **University:** Gujarat Technological University  
-  - **CGPA:** 9.21/10  
+Aayush is enthusiastic about remote work and collaborative opportunities worldwide, and he is eager to contribute to impactful projects regardless of geographical boundaries.
 
 ---
 
-**Professional Experience**
+**Academic Qualifications**  
+Aayush completed his primary and secondary education at **Saint Basil School**, achieving a 96 percentile in his 10th board exams and a 90 percentile in his 12th board exams. He then pursued a **Bachelor of Engineering in Computer Science and Engineering** from **Babaria Institute of Technology**, under **Gujarat Technological University**, graduating in 2023 with a CGPA of **9.21 / 10.00**.
 
-**Company:** Matlabinfotech (Jan 2023 - Oct 2024)  
+---
+
+**Professional Experience**  
+
+**Company:** Matlabinfotech ([https://www.matlabinfotech.com](https://www.matlabinfotech.com))  
 **Role:** Junior Software Developer  
-**Industry:** IT Services  
+**Duration:** January 2023 to October 2024  
+**Industry:** Service-based IT company  
+
+At Matlabinfotech, Aayush worked on multiple projects, the most notable being **Kanmon**, a fintech application based on embedded lending. As a full-stack developer at Kanmon, Aayush was responsible for implementing user stories, fixing bugs, writing unit test cases, and conducting end-to-end testing before releases. He ensured that high-quality, production-ready features were delivered.
+
+During his time at Kanmon, Aayush:
+- Utilized **Orum.io** to implement recurring payments for all Kanmon products.
+- Implemented the **Pay Now** feature for products like Term Loans, Invoice Financing, and LOC.
+- Developed and automated the generation of monthly borrower statements and platform statements using **Puppeteer**.
+- Designed and documented REST APIs for various platforms.
+
+In addition to his work at Kanmon, Aayush also contributed to a project called **Virtual HR**, which automated HR processes using **N8N** and **Slack Bolt**. He helped implement systems for leave automation and resume parsing.
 
 ---
 
-**Projects at Matlabinfotech**
-
-1. **Kanmon (Fintech)**  
-   - Implemented recurring payments using Orum.io.  
-   - Developed "Pay Now" features for Term Loan, Invoice Financing, and LOC.  
-   - Automated monthly borrower and platform statements using Puppeteer.  
-   - Created and documented REST APIs.  
-   - **Skills:** TypeScript, Snowflake, DBT, PostgreSQL, Prisma, Next.js, React.js, Tailwind, Nest.js  
-
-2. **Virtual HR (HR Process Automation)**  
-   - Built tools for automating leave and resume parsing using Slack-Bolt and n8n.  
-   - **Skills:** Slack API, Mongoose  
+**Skills:**  
+- **Programming Languages:** TypeScript, JavaScript  
+- **Databases & Tools:** Snowflake, DBT, PostgreSQL, Prisma, Census  
+- **Frontend:** Next.js, React.js, Tailwind, Material UI  
+- **Backend:** Nest.js, Express  
+- **Testing & Development:** Jest, React Testing Library  
+- **Other Tools:** Customer.io, Orum, Plaid, Slack API, Mongoose, N8N, RabbitMQ, Redis, Docker, AWS EC2  
 
 ---
 
-**Key Projects**
+**Personal Projects**  
 
-1. **Remote Code Execution Engine**  
-   - Designed a system to handle concurrent requests efficiently using Node.js child processes.  
-   - Incorporated RabbitMQ for asynchronous task execution and Redis for temporary data storage.  
-   - Secured the system using Docker and deployed it on AWS EC2.  
-   - **Skills:** Node.js, Express, RabbitMQ, Redis, Docker, AWS EC2  
-   - **GitHub:** [Remote Code Execution Engine](https://github.com/aayushpagare21-compcoder/remote-code-execution)  
+1. **AspirantsAI**  
+AspirantsAI is an all-in-one platform designed to enhance the preparation process for UPSC Mains aspirants. It includes **AffairsQuest**, an intelligent tool that links current affairs to relevant previous year questions (PYQs), and **SmartCheck**, an AI-powered tool that provides detailed feedback on handwritten answers. AspirantsAI helps students improve their current affairs knowledge, enhance their answer-writing skills, and access tailored resources for their UPSC preparation.  
+Skills: Next.js, Vercel, NeonDB, ShadcnUI, Prisma, PostgreSQL, LangchainJS, AWS Textract, Google Search Console, AWS S3, SEO  
+**Live URL:** [https://www.aspirantsai.com](https://www.aspirantsai.com)  
+**GitHub:** [https://github.com/aayushpagare21-compcoder/aspirants](https://github.com/aayushpagare21-compcoder/aspirants)  
+**Medium Blog:** [SmartCheck: AI-based UPSC Mains Answer Evaluator](https://medium.com/operations-research-bit/smartcheck-ai-based-upsc-mains-answer-evaluator-b126bec4b21e)
 
-2. **AspirantsAI**  
-   - Developed a Generative AI-powered platform for UPSC Mains aspirants.  
-   - Features tools like AffairsQuest (links current affairs to PYQs) and SmartCheck (AI-driven answer evaluation).  
-   - **Skills:** Next.js, Prisma, PostgreSQL, LangChain.js, AWS Textract, ShadCN UI  
-   - **Live URL:** [AspirantsAI](https://www.aspirantsai.com)  
-   - **GitHub:** [AspirantsAI](https://github.com/aayushpagare21-compcoder/aspirants)  
+2. **Remote Code Execution Engine**  
+Aayush developed a real-time code execution engine in **Node.js**, designed to handle multiple concurrent requests efficiently. He used **Node.js child processes** for managing CPU-bound tasks, **RabbitMQ** for message queuing, and **Docker** for secure execution environments. The system was further optimized using **Redis** for fast data storage, ensuring it was robust against malicious attacks.  
+Skills: Node.js, Express, RabbitMQ, Redis, Docker, AWS EC2  
+**GitHub:** [https://github.com/aayushpagare21-compcoder/remote-code-execution](https://github.com/aayushpagare21-compcoder/remote-code-execution)  
+**Medium Blog:** [Remote Code Execution Engine](https://medium.com/operations-research-bit/remote-code-execution-engine-432c86b78ab1s)
 
-3. **EmbedMe**  
-   - A portfolio integration platform.  
-   - **GitHub:** [EmbedMe](https://github.com/aayushpagare21-compcoder/embedme)  
-
----
-
-**Skills**
-
-- **Frontend:** React.js, Next.js, Tailwind, MaterialUI  
-- **Backend:** Nest.js, Node.js, Express  
-- **Database:** PostgreSQL, Snowflake, Prisma, DBT  
-- **Tools:** Docker, RabbitMQ, Redis, AWS Textract, Slack API  
-- **Languages:** TypeScript, JavaScript  
-- **Testing:** Jest, React Testing Library  
+3. **Embedme**  
+Embedme is a platform that integrates seamlessly into any portfolio website, helping users represent themselves and showcase their unique professional identity.  
+**GitHub:** [https://github.com/aayushpagare21-compcoder/embedme](https://github.com/aayushpagare21-compcoder/embedme)
 
 ---
 
-**Hobbies and Interests**
+**Services**  
 
-- **Music:** Plays the piano to express emotions beyond words.  
-- **History Enthusiast:** Explores historical sites and events to foster empathy and gain perspective.  
-- **Movies:** Enjoys impactful films like Schindler's List, Interstellar, and Source Code.  
-- **TV Shows:** Sci-fi and fiction, including The Vampire Diaries.  
+Aayush offers a service where he can create a **Next.js app** integrated with AI for clients. The service includes:  
+- Deployment of the app on **Vercel**, ensuring it is bug-free and optimized for performance.
+- Integration of AI technologies, such as **Google GeminiAI**, **LangChain**, and GPT-based models, for various purposes like semantic search and chatbots.
+- Custom domain setup, including registration and configuration for SSL certificates.
+- Providing a **GitHub repository** for source code, including AI integrations and configurations.
+- Comprehensive **technical documentation** on setup, deployment, and usage.
 
 ---
 
-**Contact Information**
+**Hobbies**  
+Aayush has a deep passion for **playing the piano**, allowing him to express emotions in a unique way. He also enjoys exploring **history**, finding it an enriching way to connect with the world and empathize with diverse perspectives. Among his favorite movies is **Schindler's List**, a film that tells a moving story of humanity during a dark period in history.
 
+In addition to history, Aayush enjoys **fiction and sci-fi**, with favorites including **The Vampire Diaries**, **Interstellar**, and **Source Code**. These works inspire his imagination and foster his appreciation for storytelling and technology.
+
+---
+
+**Contact Information**  
 - **Phone:** (+91) 9537584862  
-- **Email:** aayushpagare21@gmail.com  
+- **Email:** [aayushpagare21@gmail.com](mailto:aayushpagare21@gmail.com)  
+
+**Social Media:**  
 - **LinkedIn:** [Aayush Pagare](https://www.linkedin.com/in/aayush-pagare-5817a81aa/)  
-- **GitHub:** [Aayush Pagare](https://github.com/aayushpagare21-compcoder)  
-- **Medium:** [Aayush Pagare](https://medium.com/@aayushpagare21)  
+- **GitHub:** [Aayush Pagare GitHub](https://github.com/aayushpagare21-compcoder)  
+- **Medium:** [Aayush Pagare Medium](https://medium.com/@aayushpagare21)
 `;
 
 const Example = () => {
