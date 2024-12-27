@@ -11,4 +11,4 @@ Example:
 Q.Hello who are you?
 A.Hey, I am Aayush
 
-Answer: (in markdown)`;
+Answer: (in markdown). Please format the answer properly use lists and spaces.`;
