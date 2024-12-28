@@ -93,7 +93,7 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
       const data: ChatResponse = await response.json();
       return data.answer;
     },
-    [botId],
+    [botId]
   );
 
   // Message handlers
@@ -113,8 +113,8 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
       const answer = await getAnswer(trimmedQuestion);
       setMessages((prev) =>
         prev.map((msg, index) =>
-          index === prev.length - 1 ? { ...msg, text: answer.trim() } : msg,
-        ),
+          index === prev.length - 1 ? { ...msg, text: answer.trim() } : msg
+        )
       );
     } catch (error) {
       setMessages((prev) =>
@@ -125,8 +125,8 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
                 text: "Failed to load AI response. Please try again.",
                 error: true,
               }
-            : msg,
-        ),
+            : msg
+        )
       );
       console.error("Error fetching AI response:", error);
     }
@@ -169,7 +169,11 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
 
   return (
     <div
-      style={{ backgroundColor: chatBotBackgroundColor }}
+      style={{
+        backgroundColor: chatBotBackgroundColor,
+        width: "100%",
+        height: "100%",
+      }}
       className="h-[80%] w-full lg:max-w-lg shadow-xl rounded-lg p-4"
     >
       <div ref={chatContainerRef} className="flex flex-col h-full py-4">
@@ -185,7 +189,7 @@ const ChatbotClient: React.FC<ChatbotProps> = ({
               }`}
             >
               <div
-                className={`md:max-w-[80%] text-md px-4 py-3 mx-2 rounded-lg shadow-md ${
+                className={`max-w-[80%] text-md px-4 py-3 mx-2 rounded-lg shadow-md ${
                   message.error ? "border-red-500 border" : ""
                 }`}
                 style={{

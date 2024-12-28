@@ -1,5 +1,4 @@
 import PageWrapper from "emebedme/components/containers/PageWrapper";
-import EmbedmeNavbar from "emebedme/components/embedme/EmbedmeNavbar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
@@ -30,7 +29,6 @@ export default async function ChatLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <PageWrapper>
-          <EmbedmeNavbar />
           {children}
         </PageWrapper>
       </body>
